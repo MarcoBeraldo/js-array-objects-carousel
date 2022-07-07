@@ -73,19 +73,74 @@ const images = [
     },
 ];
 
+const galleryElement = document.getElementById("gallery");
+const thumbnailElement = document.getElementById("thumbnail");
+const prevButtonElement = document.getElementById("prev");
+const nextButtonElement = document.getElementById("next");
+
+const imagesUrls = images.map(image => image.url);
+const imagesTitles = images.map(image => image.title);
+const imagesDescriptions = images.map(image => image.description);
+
+for (let i = 0; i < imagesUrls.length; i++) {
+    galleryElement.innerHTML += `
+    <img src="${imagesUrls[i]}" class="item">
+    <figcaption class="caption">
+        <h2>${imagesTitles[i]}</h2 >
+        <p>${imagesDescriptions[i]}</p>
+    </figcaption> 
+    `}
+
+// definisco la variabile per prendere la posizione all'interno dell'array
+let activeIndex = 0;
+// prendo gli elementi con classe "item" all interno del div gallery
+const galleryImages = document.getElementsByClassName("item");
+const imagesCaption = document.getElementsByClassName("caption");
+
+// aggiungo la classe "active" con "display: block" agli elementi all'interno di gallery
+galleryImages[activeIndex].classList.add("active");
+imagesCaption[activeIndex].classList.add("active");
 
 
+// aggiungo l'eventlistener al bottone next
+nextButtonElement.addEventListener('click', function () {
+    // rimuovo la classe "active"
+    galleryImages[activeIndex].classList.remove("active");
+    imagesCaption[activeIndex].classList.remove("active");
+
+    // incremento il valore per prendere la prossima posizione nell array
+    activeIndex++;
+
+    //! verifico che le immagini non siano finite e se lo sono ricomincio
+    if (activeIndex >= images.length) {
+        activeIndex = 0;
+    }
+
+    // assegno al nuovo elemento la classe "active"
+    galleryImages[activeIndex].classList.add("active");
+    imagesCaption[activeIndex].classList.add("active");
+});
 
 
+// aggiungo l'eventlistener al bottone prev
+prevButtonElement.addEventListener('click', function () {
+    // rimuovo la classe "active"
+    galleryImages[activeIndex].classList.remove("active");
+    imagesCaption[activeIndex].classList.remove("active");
+    // diminuisco il valore per prendere la posizione precedente nell' array
+    activeIndex--;
 
 
+    //! quando arrivo alla prima immagine ricomincio dall'ultima
+    if (activeIndex < 0) {
+        activeIndex = images.length - 1;
+        console.log(activeIndex)
+    }
 
-
-
-
-
-
-
+    // assegno al nuovo elemento la classe "active"
+    galleryImages[activeIndex].classList.add("active");
+    imagesCaption[activeIndex].classList.add("active");
+});
 
 
 

@@ -11,12 +11,14 @@
     object-fit: cover;
 
     border-radius: 15px;
+    position: relative
 }
 
 .item {
     display: none;
 }
 
+figcaption.active,
 .item.active {
     display: block;
 }
@@ -40,4 +42,14 @@
 
 #next {
     left: 103%;
+}
+
+figcaption {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    display: none;
 }
