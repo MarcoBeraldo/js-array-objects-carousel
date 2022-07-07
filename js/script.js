@@ -143,7 +143,22 @@ prevButtonElement.addEventListener('click', function () {
 });
 
 
+setInterval(function () {
+    galleryImages[activeIndex].classList.remove("active");
+    imagesCaption[activeIndex].classList.remove("active");
 
+    // incremento il valore per prendere la prossima posizione nell array
+    activeIndex++;
+
+    //! verifico che le immagini non siano finite e se lo sono ricomincio
+    if (activeIndex >= images.length) {
+        activeIndex = 0;
+    }
+
+    // assegno al nuovo elemento la classe "active"
+    galleryImages[activeIndex].classList.add("active");
+    imagesCaption[activeIndex].classList.add("active");
+}, 3000);
 
 
 
