@@ -91,15 +91,22 @@ for (let i = 0; i < imagesUrls.length; i++) {
     </figcaption> 
     `}
 
+for (let i = 0; i < imagesUrls.length; i++) {
+    thumbnailElement.innerHTML += `
+        <img src="${imagesUrls[i]}" class="thumb">    
+        `}
+
 // definisco la variabile per prendere la posizione all'interno dell'array
 let activeIndex = 0;
 // prendo gli elementi con classe "item" all interno del div gallery
 const galleryImages = document.getElementsByClassName("item");
 const imagesCaption = document.getElementsByClassName("caption");
+const thumbnailImage = document.getElementsByClassName("thumb");
 
 // aggiungo la classe "active" con "display: block" agli elementi all'interno di gallery
 galleryImages[activeIndex].classList.add("active");
 imagesCaption[activeIndex].classList.add("active");
+thumbnailImage[activeIndex].classList.add("active");
 
 
 // aggiungo l'eventlistener al bottone next
@@ -107,7 +114,7 @@ nextButtonElement.addEventListener('click', function () {
     // rimuovo la classe "active"
     galleryImages[activeIndex].classList.remove("active");
     imagesCaption[activeIndex].classList.remove("active");
-
+    thumbnailImage[activeIndex].classList.remove("active");
     // incremento il valore per prendere la prossima posizione nell array
     activeIndex++;
 
@@ -119,6 +126,7 @@ nextButtonElement.addEventListener('click', function () {
     // assegno al nuovo elemento la classe "active"
     galleryImages[activeIndex].classList.add("active");
     imagesCaption[activeIndex].classList.add("active");
+    thumbnailImage[activeIndex].classList.add("active");
 });
 
 
@@ -146,7 +154,7 @@ prevButtonElement.addEventListener('click', function () {
 setInterval(function () {
     galleryImages[activeIndex].classList.remove("active");
     imagesCaption[activeIndex].classList.remove("active");
-
+    thumbnailImage[activeIndex].classList.remove("active");
     // incremento il valore per prendere la prossima posizione nell array
     activeIndex++;
 
@@ -158,6 +166,7 @@ setInterval(function () {
     // assegno al nuovo elemento la classe "active"
     galleryImages[activeIndex].classList.add("active");
     imagesCaption[activeIndex].classList.add("active");
+    thumbnailImage[activeIndex].classList.add("active");
 }, 3000);
 
 
